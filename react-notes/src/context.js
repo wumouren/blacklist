@@ -7,32 +7,34 @@ export default class Context extends React.Component {
   // 定义 context 中数据类型
   static childContextTypes = {
     text: PropTypes.string,
-    changeText: PropTypes.func
+    change: PropTypes.func
   }
 
   // 返回 context
   getChildContext() {
-    return {
+    return { 
       text: this.state.text,
-      changeText: this.changeText.bind(this),
+      change: this.state.change
     }
-  }
-  changeText(text){
-    this.setState({
-      text: text
-    })
-    console.log(text,this)
   }
   constructor() {
     super()
     this.state = {
-      text: '我是初始数据'
-    }
+      text: '我是初始数据',
+      change: (data) => this.change(data) // 注意 this 指向
+    };
+    
+  }
+  change(data){
+    this.setState({
+      text: data
+    })
   }
 
   render() {
     return (
       <div>
+        <div>{this.state.text}</div>
         <Child></Child>
       </div>
     )
