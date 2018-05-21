@@ -8,11 +8,9 @@ const store = {
     color: 'green'
   }
 }
-
 function renderHead (){
   const head = document.getElementById('head')
-  head.innerText = store.head.text + '--' + store.body.text;
-  dispatch({type: 'BODY_TEXT', text: '我是 head 经过调用 dispatch 修改后的 body'})
+  head.innerText = store.head.text;
   head.style.color = store.head.color;
 }
 function renderBody (){
@@ -36,4 +34,6 @@ function renderApp (){
   renderHead();
   renderBody();
 }
+renderApp();
+dispatch({type: 'BODY_TEXT', text: '我是经过调用 dispatch 修改后的 body'})
 renderApp();
