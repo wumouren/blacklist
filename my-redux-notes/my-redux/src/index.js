@@ -1,7 +1,7 @@
-import { state } from './state/state.js';
-import { stateChange } from './state/stateChange.js';
+import { state } from './redux/state.js';
+import { storeChange } from './redux/storeChange.js';
 import { createStore } from './redux/createStore.js';
-const { store, dispatch } = createStore(state, stateChange)
+const { store, dispatch, subscribe } = createStore(state, storeChange)
   
 function renderHead (){
   const head = document.getElementById('head')
@@ -18,6 +18,8 @@ function renderApp (){
   renderHead();
   renderBody();
 }
+// 首次渲染
+subscribe(() => renderApp());
+subscribe(() => alert('页面刷新了'));
 renderApp();
-dispatch({ type: 'BODY_TEXT', text: '我是调用 dispatch 修改的 body' })
-console.log("store==",store)
+dispatch({ type: 'BODY_TEXT', text: '我是调用 dispatch 修改的 body' });
