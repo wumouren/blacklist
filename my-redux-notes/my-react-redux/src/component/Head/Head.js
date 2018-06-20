@@ -2,11 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 export default class Head extends Component {
   static contextTypes = {
-    head: PropTypes.string,
+    store: PropTypes.object,
+    dispatch: PropTypes.func,
+    subscribe: PropTypes.func,
+    getStore: PropTypes.func
   }
-  constructor (props, context) {
+  constructor (props) {
     super(props)
-    this.state = context;
+    this.state = {};
+  }
+  componentWillMount(){
+    const { subscribe } = this.context;
+    this._upState();
+    subscribe(() => this._upState())
+  }
+  _upState(){
+    const { getStore } = this.context;
+    this.setState({
+      ...getStore()
+    })
   }
   render() {
     return (

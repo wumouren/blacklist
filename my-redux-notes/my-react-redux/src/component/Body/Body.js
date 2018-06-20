@@ -3,11 +3,24 @@ import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 export default class Body extends Component {
   static contextTypes = {
-    body: PropTypes.string,
+    store: PropTypes.object,
+    getStore: PropTypes.func,
+    subscribe: PropTypes.func
   }
-  constructor (props, context) {
+  constructor (props) {
     super(props)
-    this.state = context;
+    this.state = {};
+  }
+  componentWillMount(){
+    const { subscribe } = this.context;
+    this._upState();
+    subscribe(() => this._upState())
+  }
+  _upState(){
+    const { getStore } = this.context;
+    this.setState({
+      ...getStore()
+    })
   }
   render() {
     return (
