@@ -9,16 +9,18 @@ export default class App extends Component {
     headBtn: PropTypes.string,
     bodyBtn: PropTypes.string
   }
-  getChildContext () {
-    const store = {
+  constructor(){
+    super();
+    this.state = {
       head: '我是全局 head',
       body: '我是全局 body',
       headBtn: '修改 head',
       bodyBtn: '修改 body'
     }
-    return { ...store }
   }
-
+  getChildContext () {
+    return this.state;
+  }
   render() {
     return (
       <div className="App">
