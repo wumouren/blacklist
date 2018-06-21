@@ -22,18 +22,18 @@ export default class Button extends Component {
       ...getStore()
     })
   }
-  changeContext(type){
+  changeContext(type, value){
     const { dispatch } = this.context;
     dispatch({ 
       type: type,
-      head: '我是修改后的数据'
+      head: value
     });
   }
   render() {
     return (
       <div className="button">
-        <div className="btn" onClick={() => this.changeContext('HEAD')}>{this.state.headBtn}</div>
-        <div className="btn" onClick={() => this.changeContext('BODY')}>{this.state.bodyBtn}</div>
+        <div className="btn" onClick={() => this.changeContext('HEAD', '我是改变的数据1')}>{this.state.headBtn}</div>
+        <div className="btn" onClick={() => this.changeContext('HEAD', '我是改变的数据2')}>{this.state.bodyBtn}</div>
       </div>
     );
   }

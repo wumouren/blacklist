@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-export default class Head extends Component {
+import { connect } from '../../redux';
+class Head extends Component {
   static contextTypes = {
     store: PropTypes.object,
     dispatch: PropTypes.func,
@@ -23,9 +24,10 @@ export default class Head extends Component {
     })
   }
   render() {
+    console.log(this.props)
     return (
       <div className="head">{this.state.head}</div>
     );
   }
 }
-
+export default connect(Head);
