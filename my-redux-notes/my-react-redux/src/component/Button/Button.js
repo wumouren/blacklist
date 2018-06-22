@@ -18,4 +18,7 @@ class Button extends Component {
     );
   }
 }
-export default connect(Button)
+const propsType = {
+  store: PropTypes.object,
+}
+export default connect(Button, propsType)

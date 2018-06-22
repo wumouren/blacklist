@@ -12,4 +12,7 @@ class Body extends Component {
     );
   }
 }
-export default connect(Body)
+const propsType = {
+  store: PropTypes.object,
+}
+export default connect(Body, propsType)
