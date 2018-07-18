@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import App from './components/app/App';
-import Home from './components/home/Home';
+// import Home from './components/home/Home';
 
 // 两种写法都可以
 // export default class Routers extends Component {
@@ -22,7 +22,7 @@ const Routers = () => {
     <Router>
       <Switch>
         <Route exact path='/' component={App}/>
-        <Route exact path='/home' component={Home}/>
+        {/* <Route exact path='/home' component={Home}/> */}
       </Switch>
     </Router>
   );

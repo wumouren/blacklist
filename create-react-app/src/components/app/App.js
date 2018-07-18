@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
 import './App.less';
-import { Button } from 'antd';
+import { Button, Upload } from 'antd';
 
 class App extends Component {
-  // 路由跳转
-  toHome(){
-    this.props.history.push('/home')
-  }
+ 
   render() {
+
+    const props = {
+      name: 'file',
+      action: 'http://127.0.0.1:9998/upload',
+      headers: {
+        authorization: 'authorization-text',
+      },
+      onChange(info) {
+        if (info.file.status !== 'uploading') {
+          console.log(info.file, info.fileList);
+        }
+      },
+    };
+
     return (
-      <div className="App">
-        <h1>app</h1>
-        <Button type="primary" onClick={() => {this.toHome()}}>app to home</Button>
-      </div>
+      <Upload {...props}>
+        <Button>上传</Button>
+      </Upload>
     );
   }
 }
